@@ -1,13 +1,12 @@
 package sample;
 
-//import com.sun.corba.se.spi.orbutil.threadpool.Work;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 
 import java.net.URL;
@@ -23,6 +22,10 @@ public class Controller implements Initializable
     private TextField lastNameTextField;
     @FXML
     private CheckBox isActiveCheckBox;
+    @FXML
+    private Button AddNewName;
+    @FXML
+    private Button ClearName;
 
 
 
@@ -41,37 +44,43 @@ public class Controller implements Initializable
                 }
         );
 
-
         ObservableList<Employee> items = employeeListView.getItems();
-        Employee employee1 = new Employee();
-        Employee employee2 = new Employee();
-        employee1.firstName = "Robert";
-        employee1.lastName = "Smith";
-        employee2.firstName = "Lisa";
-        employee2.lastName = "Smith";
 
+        EventHandler<ActionEvent> add = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                items.add(new Employee(firstNameTextField.getText(),
+                        (lastNameTextField.getText()),
+                        Boolean.parseBoolean(isActiveCheckBox.getText())));
+            }
+        };
+        AddNewName.setOnAction(add);
+        EventHandler<ActionEvent> clear = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                firstNameTextField.clear();
+                lastNameTextField.clear();//clicking new button makes left side visible
+            }
+        };
+        ClearName.setOnAction(clear);
+
+
+        Employee employee1 = new Employee("Robert", "Smith", true);
+        Employee employee2 = new Employee("Lisa", "Smith", false);
         items.add(employee1);
         items.add(employee2);
 
-        for(int i = 0; i < 10; i++)
-        {
-            Employee employee = new Employee();
-            employee.firstName = "Generic";
-            employee.lastName = "Employee" + " " + i;
-            employee.hire();
-            items.add(employee);
-        }
+        //for(int i = 0; i < 10; i++)
+        //{
+        //    Employee employee = new Employee("Generic", "Employee", true);
+        //    employee.hire();
+        //    items.add(employee);
+        //}
 
-        Staff staff1 = new Staff();
-        staff1.firstName = "StaffPerson";
-        staff1.lastName = "GoodWorker";
-
-        Faculty faculty1 = new Faculty();
-        faculty1.firstName = "FacultyPerson";
-        faculty1.lastName = "TerribleWorker";
-
-        items.add(staff1);
-        items.add(faculty1);
+        //Staff staff1 = new Staff("StaffPerson", "GoodWorker", true);
+        //Faculty faculty1 = new Faculty("FacultyPerson", "TerribleWorker", false);
+        //items.add(staff1);
+        //items.add(faculty1);
 
     }
 }
