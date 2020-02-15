@@ -30,8 +30,6 @@ public class Controller implements Initializable
     private Button DeleteSelected;
 
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -53,18 +51,21 @@ public class Controller implements Initializable
             public void handle(ActionEvent event) {
                 items.add(new Employee(firstNameTextField.getText(),
                         (lastNameTextField.getText()),
-                        Boolean.parseBoolean(isActiveCheckBox.getText())));
+                        Boolean.parseBoolean(String.valueOf(isActiveCheckBox.isSelected()))));
             }
         };
         AddNewName.setOnAction(add);
+
         EventHandler<ActionEvent> clear = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 firstNameTextField.clear();
-                lastNameTextField.clear();//clicking new button makes left side visible
+                lastNameTextField.clear();
+                isActiveCheckBox.setSelected(false);//clicking new button makes left side visible
             }
         };
         ClearName.setOnAction(clear);
+
         EventHandler<ActionEvent> delete = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
