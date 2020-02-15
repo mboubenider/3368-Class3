@@ -26,6 +26,8 @@ public class Controller implements Initializable
     private Button AddNewName;
     @FXML
     private Button ClearName;
+    @FXML
+    private Button DeleteSelected;
 
 
 
@@ -63,6 +65,24 @@ public class Controller implements Initializable
             }
         };
         ClearName.setOnAction(clear);
+        EventHandler<ActionEvent> delete = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ObservableList<Employee> selectedRows, allPeople;
+                allPeople = employeeListView.getItems();
+
+                //rows that were selected
+                selectedRows = employeeListView.getSelectionModel().getSelectedItems();
+
+                //loop over the selected rows and remove the Employee objects from the table
+                for (Employee employee: selectedRows)
+                {
+                    allPeople.remove(employee);
+                }
+
+            }
+        };
+        DeleteSelected.setOnAction(delete);
 
 
         Employee employee1 = new Employee("Robert", "Smith", true);

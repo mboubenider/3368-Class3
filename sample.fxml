@@ -27,6 +27,7 @@
         <HBox>
             <Button text = "Add new" prefWidth="100" fx:id = "AddNewName"/>
             <Button text = "Clear" prefWidth="100" fx:id = "ClearName"/>
+            <Button text = "Delete Selected" prefWidth="100" fx:id = "DeleteSelected"/>
         </HBox>
     </VBox>
 
