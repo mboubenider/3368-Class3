@@ -90,17 +90,17 @@ public class Controller implements Initializable
         items.add(employee1);
         items.add(employee2);
 
-        //for(int i = 0; i < 10; i++)
-        //{
-        //    Employee employee = new Employee("Generic", "Employee", true);
-        //    employee.hire();
-        //    items.add(employee);
-        //}
+        for(int i = 0; i < 10; i++)
+        {
+            Employee employee = new Employee("Generic", "Employee", true);
+            employee.hire();
+            items.add(employee);
+        }
 
-        //Staff staff1 = new Staff("StaffPerson", "GoodWorker", true);
-        //Faculty faculty1 = new Faculty("FacultyPerson", "TerribleWorker", false);
-        //items.add(staff1);
-        //items.add(faculty1);
+        Staff staff1 = new Staff("StaffPerson", "GoodWorker", true);
+        Faculty faculty1 = new Faculty("FacultyPerson", "TerribleWorker", false);
+        items.add(staff1);
+        items.add(faculty1);
 
     }
 }
